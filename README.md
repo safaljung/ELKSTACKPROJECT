@@ -102,10 +102,15 @@ Filebeat is a logging agent installed on the  Web Servers, tailing them, and for
 Metricbeat is a lightweight shipper that we can install on our servers to periodically collect metrics from the operating system and from services running on the server. Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server, such as:
 
 Apache
+
 HAProxy
+
 MongoDB
+
 MySQL
+
 Nginx
+
 
 
 
