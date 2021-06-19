@@ -84,7 +84,7 @@ Download and launch Docker Elk container on Elk Server VM
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+https://github.com/safaljung/kcproject13/blob/848f9874bd052608cfcb2b3aa37fb73fdc5a7f93/Diagrams/Kibana.PNG
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
