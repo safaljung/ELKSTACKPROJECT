@@ -154,6 +154,11 @@ nano hosts in the ansible directory and on the Webservers Group we need to put t
 after editing the nano files and config files, the user can run 
 
 sudo ansible-playbook Elk-playbook.yml To Install Elk docker on Elk server
+
+
 sudo ansible-playbook Filebeat-playbook.yml To Install Filebeat on Webservers  
+
 sudo ansible-playbook Metricbeat-playbook.yml To install Metricbeat on Webserves
+
 sudo ansible-playbook Webservers-playbook.yml To install Docker, Python,  Python Docker Module and Docker Web Contianer.
+
