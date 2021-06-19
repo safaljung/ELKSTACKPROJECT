@@ -47,7 +47,7 @@ The configuration details of each machine may be found below.
 | Jumpbox | Gateway   | 10.0.0.5   | Linux            |
 | Web 1   | Webserver | 10.0.0.7   | Linux            |
 | Web 2   | Webserver | 10.0.0.9   | Linux            |
-| Web 3   | Webserver | 10.0.0.9   | Linux            |
+| Web 3   | Webserver | 10.0.0.10  | Linux            |
 
 ### Access Policies
 
@@ -88,25 +88,72 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+Web 1 10.0.0.7
+Web 2 10.0.0.9
+Web 3 10.0.0.10
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+ Filebeats on Web Server 1, 2 and 3. Metricbeat on Web Server 1,2 and 3.
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+
+Filebeat is a logging agent installed on the  Web Servers, tailing them, and forwarding the data to Kibana VM for more advanced processing or directly into Elasticsearch for indexing. It is essentially a log forwarding tool that itemized and tracks all files on the server and reports changes to them.
+
+Metricbeat is a lightweight shipper that we can install on our servers to periodically collect metrics from the operating system and from services running on the server. Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server, such as:
+
+Apache
+HAProxy
+MongoDB
+MySQL
+Nginx
+
+
+
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the Config file to etc/ansible/config.
+- Update the Config file to include the Elk Server internal ip adderess. 
+- Run the playbook, and navigate to kibana to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+- Which file is the playbook? Where do you copy it?
+
+The playbook is Filebeat-playbook.yml, Metricbeat-playbook.yml, Elk-playbook.yml and Webservers-playbook.yml
+ 
+ We need to copy them in etc/ansible/playbooks in the ansible in Jummpbox.
+ 
+Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+
+We need to update the hosts file to make ansible run the playbook on specific machines. We specify selecting the group Webservers and Elk in the hosts file to install ELK server on versus which to install Filebeat.
+
+
+Which URL do you navigate to in order to check that the ELK server is running?
+
+We need to go to this url:
+
+http://13.88.158.162:5601/app/kibana#/home
+
+!3.88.158.162 is the Public ip address of the server where as 5601 is the port.
+
+
+As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
+
+
+
+
+They can download the playbook by 
+curl  https://github.com/safaljung/kcproject13/tree/main/Ansible. and copy it to thier etc/ansible directory with speicific direcotry for config and playbooks. 
+
+They need to update the congig file with the ip address of our elk server so the Filebeat and MetricBeat on web 1 ,2 and 3 sends the data to the Elk Server.
+
+nano hosts in the ansible directory and on the Webservers Group we need to put the ip address of our Web 1, 2 and 3, where as in the group ELk we put the ip address of your Elk Machine.
+
+after editing the nano files and config files, the user can run 
+
+sudo ansible-playbook Elk-playbook.yml To Install Elk docker on Elk server
+sudo ansible-playbook Filebeat-playbook.yml To Install Filebeat on Webservers  
+sudo ansible-playbook Metricbeat-playbook.yml To install Metricbeat on Webserves
+sudo ansible-playbook Webservers-playbook.yml To install Docker, Python,  Python Docker Module and Docker Web Contianer.
