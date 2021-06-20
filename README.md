@@ -83,8 +83,7 @@ Enables Docker on Boot
 Download and launch Docker Elk container on Elk Server VM
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
-
-https://github.com/safaljung/kcproject13/blob/848f9874bd052608cfcb2b3aa37fb73fdc5a7f93/Diagrams/Kibana.PNG
+https://github.com/safaljung/kcproject13/blob/351622208684026188e7ed5704605a52ebc22ad6/Diagrams/docker.PNG
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
